@@ -137,3 +137,6 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# Extra
+Lib/site-packages/django/__pycache__/shortcuts.cpython-311.pyc
