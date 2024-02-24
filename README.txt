@@ -1,0 +1,1 @@
+To set-up your virtual enviroment, run python -m venv virtualEnv, enter with virtualEnv\Scripts\activate, and requirements.txt should start working. Preferably we'll all be using the same named virtual enviorment but it really doesnt matter.
