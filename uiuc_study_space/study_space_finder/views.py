@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from .models import BuildingDetails
 
-def index(request):
-    return HttpResponse("Welcome to UIUC study space finder!")
+def list_view(request):
+    return render(request, "list.html", {"buildings": BuildingDetails.objects.all()})

@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% block title %} Study Spaces {% endblock %}
+
+{% block content %}
+    <ul>
+        {% for building in buildings %}
+            <li>{{ building.building_name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
