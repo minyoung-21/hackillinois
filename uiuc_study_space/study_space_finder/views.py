@@ -16,6 +16,8 @@ def list_view(request):
         room = room.filter(tables_availability=True)
     if request.GET.get('open_space_availability'):
         room = room.filter(open_space_availability=True)
+    if request.GET.get('white_board_availability'):
+        room = room.filter(white_board_availability=True)
 
     return render(request, "list.html", {"room": room})
 

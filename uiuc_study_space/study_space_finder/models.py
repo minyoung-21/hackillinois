@@ -8,6 +8,7 @@ class RoomDetails(models.Model):
     operating_start_hours = models.TimeField(editable=True, blank=True)
     operating_end_hours = models.TimeField(editable=True, blank=True)
     number_of_seats = models.IntegerField()
+    white_board_availability = models.BooleanField(default=False)
     outlet_availability = models.BooleanField(default=False)
     tables_availability = models.BooleanField(default=False)
     open_space_availability = models.BooleanField(default=False)
