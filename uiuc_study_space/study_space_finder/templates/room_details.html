@@ -3,10 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Room Detail</title>
+
+    <!-- <title>Urbana-Champaign & UIUC Campus Map</title> -->
+<!-- Load Google Maps JavaScript API -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxLGMGzgvN-2GPhmaoCupGp0w8zjIHxHU&callback=initMap"
+  async
+  defer
+></script>
+
+<!-- Include Django Form Media -->
+{{ form.media }}
+
+<style>
+  /* Adjust map container width and position */
+  #map {
+    width: 30vw; /* Half of the screen width */
+    height: 50vh;
+    float: right; /* Move the map container to the right */
+    right: 0;
+  }
+</style>
 </head>
 <body>
     <h1>{{ room.room_name }}</h1>
     <p>{{ room.operating_start_hours }}</p>
+
     <!-- Add more details as needed -->
+
+ 
+<!-- Input fields for latitude and longitude -->
+
+
+<!-- Render the map -->
+<div id="map"></div>
+
+<input type="hidden" id = "myVar" name="variable" value="{room.coordinate_latitude}}">
+<script>
+
+
+
+    
+  // Initialize map with default center and zoom
+  var map;
+  var lata = parseFloat("{{ room.coordinate_latitude }}");
+    var lnga = parseFloat("{{ room.coordinate_longitude }}");
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: lata, lng: lnga }, // Default coordinates for UIUC
+      zoom: 18,
+    });
+  }
+
+  // Function to zoom to user-input location
+
+
+  
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+      map.setCenter({ lat: lat, lng: lng });
+      map.setZoom(18); // Constant zoom level
+    } else {
+      alert("Please enter valid latitude and longitude coordinates.");
+    }
+
+</script>
+
+
+
 </body>
 </html>
