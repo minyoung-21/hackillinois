@@ -20,5 +20,4 @@ from django.urls import path, include
 urlpatterns = [
     path("study_space_finder/", include("study_space_finder.urls")),
     path('admin/', admin.site.urls),
-    path("polls/", include("polls.urls")),
 ]

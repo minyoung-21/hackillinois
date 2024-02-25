@@ -8,5 +8,6 @@ class BuildingDetails(models.Model):
     number_of_seats = models.IntegerField()
     outlet_availability = models.BooleanField()
     individual_room_availability = models.BooleanField()
+    map_coordinates = models.DecimalField()
     def __str__(self):
         return self.building_name
