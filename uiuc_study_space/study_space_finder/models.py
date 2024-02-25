@@ -1,6 +1,15 @@
+from django import forms
+from django_google_maps.fields import AddressField, GeoLocationField
+from django_google_maps import fields as map_fields
+from django.urls import reverse
+from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
+from osm_field.fields import LatitudeField, LongitudeField, OSMField
 from django.db import models
 
 # Create your models here.
+
+
 class RoomDetails(models.Model):
     room_name = models.CharField(max_length=200)
     building_name = models.CharField(max_length=200)
@@ -11,20 +20,19 @@ class RoomDetails(models.Model):
     outlet_availability = models.BooleanField(default=False)
     tables_availability = models.BooleanField(default=False)
     open_space_availability = models.BooleanField(default=False)
-    coordinate_latitude = models.DecimalField(max_digits=9, decimal_places=7, default=0.0)
-    coordinate_longitude = models.DecimalField(max_digits=9, decimal_places=7, default=0.0)
+    coordinate_latitude = models.DecimalField(
+        max_digits=9, decimal_places=7, default=0.0)
+    coordinate_longitude = models.DecimalField(
+        max_digits=9, decimal_places=7, default=0.0)
     photo = models.ImageField(blank=True, null=True)
+    # import base64
+    # encoded_string = base64.b64encode(photo)
+
     def __str__(self):
         return self.room_name
+
 # import the standard Django Model
 # from built-in library
-from django.db import models
-
-from osm_field.fields import LatitudeField, LongitudeField, OSMField
-from django.db import models
-from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
-from django.urls import reverse
 
 
 class Post(models.Model):
@@ -36,7 +44,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog_post_detail', args=[self.slug])
-    
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
@@ -56,25 +64,18 @@ class Comment(models.Model):
     content = models.TextField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
-    
+
+
 class MyModel(models.Model):
     location = OSMField(lat_field='latitude', lon_field='longitude')
     latitude = LatitudeField()
     longitude = LongitudeField()
-from django import forms
+
+
 class MyModelForm(forms.ModelForm):
 
     class Meta:
         fields = ('location', 'latitude', 'longitude', )
         model = MyModel
-from django.db import models
-from django_google_maps import fields as map_fields
 
-class Rental(models.Model):
-    address = map_fields.AddressField(max_length=200)
-    geolocation = map_fields.GeoLocationField(max_length=100)
-from django.db import models
-
-from django_google_maps.fields import AddressField, GeoLocationField
-
-
+ 

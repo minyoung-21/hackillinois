@@ -16,33 +16,102 @@
 {{ form.media }}
 
 <style>
+  
   /* Adjust map container width and position */
-  #map {
-    width: 30vw; /* Half of the screen width */
-    height: 50vh;
-    float: right; /* Move the map container to the right */
-    right: 0;
-  }
+
+        body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    box-shadow: 10 10px 20px rgba(.9, .4, 0, 0.3);
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    border-radius: 8px;
+    /* overflow: hidden; */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+ 
+.imag {
+    width: 50%;
+    height: 250px;
+    margin-top: -1600px;
+    border-radius: 8px;
+    margin-left: 400px;
+ 
+}
+
 </style>
 </head>
 <body>
-    <h1>{{ room.room_name }}</h1>
-    <p>{{ room.operating_start_hours }}</p>
+    <div class="container">
+    
+        <h1>{{ room.room_name }}</h1>
+        <p>Operating Hours: {{ room.operating_start_hours }} - {{ room.operating_end_hours }}</p>
+        <p>Building: {{ room.building_name }}</p>
+        <p>Floor Number: {{ room.floor_number }}</p>
+        <p>Number of Seats: {{ room.number_of_seats }}</p>
+        <p>Outlet Availability: {% if room.outlet_availability %}Available{% else %}Not Available{% endif %}</p>
+        <p>Tables Availability: {% if room.tables_availability %}Available{% else %}Not Available{% endif %}</p>
+        <p>Open Space Availability: {% if room.open_space_availability %}Available{% else %}Not Available{% endif %}</p>
+    
 
-    <!-- Add more details as needed -->
 
- 
-<!-- Input fields for latitude and longitude -->
+        {% block content %}
+
+        {% load static %}
+    
+        <img src= "{% static room.photo.url %}" alt="Photo of {{ room.name }}"  class="imag">
+    {% endblock %}
+    
+    
+    
+    
 
 
-<!-- Render the map -->
-<div id="map"></div>
 
-<input type="hidden" id = "myVar" name="variable" value="{room.coordinate_latitude}}">
+        <!-- Render the map -->
+        <div id="map"></div>
+    </div>
+
+<!-- <input type="hidden" id = "myVar" name="variable" value="{room.coordinate_latitude}}"> -->
 <script>
-
-
-
     
   // Initialize map with default center and zoom
   var map;
@@ -53,6 +122,7 @@
       center: { lat: lata, lng: lnga }, // Default coordinates for UIUC
       zoom: 18,
     });
+    
   }
 
   // Function to zoom to user-input location
