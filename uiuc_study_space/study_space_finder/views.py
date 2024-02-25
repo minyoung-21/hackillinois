@@ -8,7 +8,16 @@ set_building_names = set(building_names)
 building_data = get_live_forecast(set_building_names)
 
 def list_view(request):
-    return render(request, "list.html", {"room": RoomDetails.objects.all()})
+    room = RoomDetails.objects.all()
+
+    if request.GET.get('outlet_availability'):
+        room = room.filter(outlet_availability=True)
+    if request.GET.get('tables_availability'):
+        room = room.filter(tables_availability=True)
+    if request.GET.get('open_space_availability'):
+        room = room.filter(open_space_availability=True)
+
+    return render(request, "list.html", {"room": room})
 
 
 def building_detail(request, building_id):

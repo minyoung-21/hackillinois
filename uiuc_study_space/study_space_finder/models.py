@@ -14,8 +14,11 @@ class RoomDetails(models.Model):
     coordinate_latitude = models.DecimalField(max_digits=9, decimal_places=7, default=0.0)
     coordinate_longitude = models.DecimalField(max_digits=9, decimal_places=7, default=0.0)
     photo = models.ImageField(blank=True, null=True)
+
     def __str__(self):
         return self.room_name
+    
+    
 # import the standard Django Model
 # from built-in library
 from django.db import models
@@ -68,7 +71,7 @@ class MyModelForm(forms.ModelForm):
     class Meta:
         fields = ('location', 'latitude', 'longitude', )
         model = MyModel
-        
+
 from django.db import models
 from django_google_maps import fields as map_fields
 

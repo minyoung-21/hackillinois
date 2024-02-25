@@ -2,11 +2,17 @@
 {% block title %} Study Spaces {% endblock %}
 
 {% block content %}
+<form method="GET" action="{% url 'list_view' %}">
+    <label><input type="checkbox" name="outlet_availability"> Outlet Availability</label>
+    <label><input type="checkbox" name="tables_availability"> Tables Availability</label>
+    <label><input type="checkbox" name="open_space_availability"> Open Space Availability</label>
+    <button type="submit">Apply Filters</button>
+</form>
     <ul>
         {% for room in room %}
-            <li><a href="{% url 'room_details' room.id %}">{{ room.room_name }} </a>| {{ room.operating_start_hours }} to {{ room.operating_end_hours }} | {{room.number_of_seats}} | {% if room.outlet_availability %}<span class="icon"><i class="fas fa-plug"></i></span>
+            <li><a href="{% url 'room_details' room.id %}">{{ room.room_name }} </a>{% if room.outlet_availability %}<span class="icon"><i class="fas fa-plug"></i></span>
                 {% else %}
-                {% endif %}  {% if room.individual_room_availability %}<span class="icon"><i class="fas fa-door-open"></i></span>{% else %}{% endif %}</li>
+                {% endif %} </li>
         {% endfor %}
     </ul>
 {% endblock %}
