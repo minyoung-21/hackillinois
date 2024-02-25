@@ -3,10 +3,12 @@
 
 {% block content %}
     <ul>
-        {% for building in buildings %}
-            <li><a href="{% url 'building_detail' building.id %}">{{ building.building_name }} </a>| {{ building.operating_start_hours }} to {{ building.operating_end_hours }} | {{building.number_of_seats}} | {% if building.outlet_availability %}<span class="icon"><i class="fas fa-plug"></i></span>
+        {% for room in room %}
+            <li><a href="{% url 'room_details' room.id %}">{{ room.room_name }} </a>| {{ room.operating_start_hours }} to {{ room.operating_end_hours }} | {{room.number_of_seats}} | {% if room.outlet_availability %}<span class="icon"><i class="fas fa-plug"></i></span>
                 {% else %}
-                {% endif %}  {% if building.individual_room_availability %}<span class="icon"><i class="fas fa-door-open"></i></span>{% else %}{% endif %}</li>
+                {% endif %}  {% if room.individual_room_availability %}<span class="icon"><i class="fas fa-door-open"></i></span>{% else %}{% endif %}</li>
         {% endfor %}
     </ul>
 {% endblock %}
+
+
