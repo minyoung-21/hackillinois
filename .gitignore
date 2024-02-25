@@ -1,4 +1,5 @@
 virtualEnv
+keys.env
 # Django #
 *.log
 *.pot

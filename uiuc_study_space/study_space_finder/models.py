@@ -61,12 +61,14 @@ class MyModel(models.Model):
     location = OSMField(lat_field='latitude', lon_field='longitude')
     latitude = LatitudeField()
     longitude = LongitudeField()
+
 from django import forms
 class MyModelForm(forms.ModelForm):
 
     class Meta:
         fields = ('location', 'latitude', 'longitude', )
         model = MyModel
+        
 from django.db import models
 from django_google_maps import fields as map_fields
 
