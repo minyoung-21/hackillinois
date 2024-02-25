@@ -2,6 +2,7 @@
 {% block title %} Study Spaces {% endblock %}
 
 {% block content %}
+<div class="list_container">
     <ul>
         {% for building in buildings %}
             <li><a href="{% url 'building_detail' building.id %}">{{ building.building_name }} </a>| {{ building.operating_start_hours }} to {{ building.operating_end_hours }} | {{building.number_of_seats}} | {% if building.outlet_availability %}<span class="icon"><i class="fas fa-plug"></i></span>
@@ -9,4 +10,6 @@
                 {% endif %}  {% if building.individual_room_availability %}<span class="icon"><i class="fas fa-door-open"></i></span>{% else %}{% endif %}</li>
         {% endfor %}
     </ul>
+</div> 
+
 {% endblock %}

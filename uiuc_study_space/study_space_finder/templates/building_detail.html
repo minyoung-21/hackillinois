@@ -1,3 +1,7 @@
+{% extends "main.html" %}
+{% block title %} Space Details {% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +11,6 @@
 <body>
     <h1>{{ building.building_name }}</h1>
     <p>{{ building.operating_start_hours }}</p>
-    <!-- Add more details as needed -->
 </body>
 </html>
+{% endblock %}
