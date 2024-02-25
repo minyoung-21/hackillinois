@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'polls',
     'django_google_maps',
     'django.contrib.admin',
     'django.contrib.auth',
